@@ -4,6 +4,7 @@ import pandas as pd
 from sklearn.neighbors import KNeighborsClassifier
 import numpy as np
 from pyod.models.knn import KNN
+import os
 
 app = FastAPI()
 
@@ -36,3 +37,7 @@ def detect(p1: float, p2: float, p3: float, p4: float):
 @app.get("/")
 async def root():
     return {"message": "Hello World"}
+
+if __name__ == "__main__":
+    import uvicorn
+    uvicorn.run(app, host=os.environ['HOST'], port = os.environ['PORT'])
